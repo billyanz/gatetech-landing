@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwalkan Demo | GateTech Enterprise</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FONT PAIRING KELAS ENTERPRISE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        heading: ['"Outfit"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'] 
+                    },
+                    colors: {
+                        corporate: {
+                            900: '#0B1120', 800: '#111827', 700: '#1F2937',
+                            brand: '#2563EB', accent: '#10B981', 
+                            surface: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pola Grid Transparan */
+        .bg-grid-pattern {
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-corporate-surface">
+
+    <!-- NAVBAR (Semua Link Sudah Aktif) -->
+    <header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-corporate-900 rounded-md flex items-center justify-center transition-transform group-hover:scale-105">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-corporate-900">GateTech.</span>
+                </a>
+                
+                <!-- Menu tengah -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-sm font-semibold text-gray-500 hover:text-corporate-900 transition-colors">Beranda</a>
+                    
+                    <!-- Dropdown Ekosistem (Area Hover Diperlebar biar gak gampang ilang) -->
+                    <div class="relative group py-4">
+                        <button class="text-sm font-medium text-gray-500 hover:text-corporate-900 flex items-center gap-1 focus:outline-none transition-colors">
+                            Ekosistem Fitur
+                            <svg class="w-4 h-4 text-gray-400 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <!-- Panel Dropdown -->
+                        <div class="absolute top-full left-0 w-64 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                            <a href="fitur-tamu.html" class="block px-5 py-4 hover:bg-gray-50 transition-colors border-b border-gray-50 group/item">
+                                <span class="text-sm font-bold text-corporate-900 group-hover/item:text-corporate-brand transition-colors">Manajemen Tamu</span>
+                                <span class="text-xs text-gray-500 font-light mt-1 block">Akses QR Code Dinamis</span>
+                            </a>
+                            <a href="fitur-parkir.html" class="block px-5 py-4 hover:bg-gray-50 transition-colors group/item">
+                                <span class="text-sm font-bold text-corporate-900 group-hover/item:text-corporate-accent transition-colors">Integrasi Parkir</span>
+                                <span class="text-xs text-gray-500 font-light mt-1 block">License Plate Recognition</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Link Tentang Kami (Flow Utama) -->
+                    <a href="tentang.html" class="text-sm font-semibold text-gray-500 hover:text-corporate-900 transition-colors">Tentang Kami</a>
+
+                    <!-- Tambahan Link Biar Gak Kosong -->
+                    <a href="kontak.html" class="text-sm font-medium text-gray-500 hover:text-corporate-900 transition-colors">Kontak Kami</a>
+                </nav>
+
+                <!-- Menu Kanan -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="login-dummy.html" class="text-sm font-medium text-gray-600 hover:text-corporate-900">Portal Tenant</a>
+                    <a href="jadwal-demo.html" class="bg-corporate-brand text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-lg shadow-blue-200"">Jadwalkan Demo</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FORM SECTION -->
+    <section class="relative pt-16 pb-24 overflow-hidden">
+        <!-- Efek Background -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-white rounded-[32px] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row">
+                
+                <!-- SISI KIRI: Info & Trust (Dark Mode) -->
+                <div class="lg:w-5/12 bg-corporate-900 text-white p-10 md:p-16 relative overflow-hidden flex flex-col justify-between">
+                    <!-- Efek Glow di dalam kotak gelap -->
+                    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-corporate-brand/30 blur-3xl rounded-full pointer-events-none"></div>
+                    
+                    <div class="relative z-10">
+                        <span class="text-corporate-brand font-bold tracking-widest uppercase text-xs mb-4 block">Konsultasi Gratis</span>
+                        <h2 class="font-heading text-3xl md:text-4xl font-extrabold mb-6 leading-tight">Mulai Transformasi Digital Gedung Anda</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-10">
+                            Diskusikan kebutuhan spesifik infrastruktur gedung Anda bersama tim arsitek sistem kami. Kami akan mendemonstrasikan bagaimana GateTech dapat mengoptimalkan operasional lobi dan area parkir Anda.
+                        </p>
+
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-corporate-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Sesi Demo 30 Menit</h4>
+                                    <p class="text-sm text-gray-400 mt-1">Simulasi sistem secara langsung (live product tour).</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-corporate-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Rancangan Integrasi</h4>
+                                    <p class="text-sm text-gray-400 mt-1">Analisis kompatibilitas dengan hardware eksisting gedung.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 mt-16 pt-10 border-t border-gray-800">
+                        <p class="text-sm text-gray-500 mb-4 font-medium">Dipercaya oleh manajemen properti terkemuka:</p>
+                        <div class="flex gap-6 opacity-60 grayscale font-heading font-bold text-xl tracking-wider">
+                            <span>SCBD Group</span>
+                            <span>M-Tower</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SISI KANAN: Form Pengisian -->
+                <div class="lg:w-7/12 p-10 md:p-16">
+                    <h3 class="font-heading text-2xl font-bold text-corporate-900 mb-8">Lengkapi Data Gedung Anda</h3>
+                    
+                    <form action="#" method="POST" class="space-y-6">
+                        <!-- Baris 1: Nama & Email -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
+                                <input type="text" id="nama" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-corporate-brand focus:border-corporate-brand block p-3.5 transition-colors outline-none" placeholder="Budi Santoso" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Perusahaan</label>
+                                <input type="email" id="email" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-corporate-brand focus:border-corporate-brand block p-3.5 transition-colors outline-none" placeholder="budi@namagedung.com" required>
+                            </div>
+                        </div>
+
+                        <!-- Baris 2: Nama Gedung & No HP -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="gedung" class="block text-sm font-semibold text-gray-700 mb-2">Nama Gedung / Properti</label>
+                                <input type="text" id="gedung" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-corporate-brand focus:border-corporate-brand block p-3.5 transition-colors outline-none" placeholder="Menara Nusantara" required>
+                            </div>
+                            <div>
+                                <label for="telepon" class="block text-sm font-semibold text-gray-700 mb-2">Nomor Telepon / WhatsApp</label>
+                                <input type="tel" id="telepon" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-corporate-brand focus:border-corporate-brand block p-3.5 transition-colors outline-none" placeholder="+62 811..." required>
+                            </div>
+                        </div>
+
+                        <!-- Baris 3: Dropdown Kebutuhan Modul -->
+                        <div>
+                            <label for="modul" class="block text-sm font-semibold text-gray-700 mb-2">Modul yang Ingin Didemonstrasikan</label>
+                            <select id="modul" class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-corporate-brand focus:border-corporate-brand block p-3.5 transition-colors outline-none cursor-pointer">
+                                <option value="" disabled selected>Pilih modul utama...</option>
+                                <option value="visitor">Hanya Visitor Management (QR Code)</option>
+                                <option value="parking">Hanya Integrasi Parkir (LPR)</option>
+                                <option value="full">Full Sistem (Visitor & Parkir)</option>
+                            </select>
+                        </div>
+
+                        <!-- Baris 4: Skala Traffic Gedung -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Estimasi Volume Tamu Harian</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="traffic" class="peer sr-only" checked>
+                                    <div class="text-center p-3 text-sm font-medium border border-gray-200 rounded-xl peer-checked:bg-blue-50 peer-checked:border-corporate-brand peer-checked:text-corporate-brand hover:bg-gray-50 transition-all">
+                                        &lt; 100 Tamu
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="traffic" class="peer sr-only">
+                                    <div class="text-center p-3 text-sm font-medium border border-gray-200 rounded-xl peer-checked:bg-blue-50 peer-checked:border-corporate-brand peer-checked:text-corporate-brand hover:bg-gray-50 transition-all">
+                                        100 - 500 Tamu
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="traffic" class="peer sr-only">
+                                    <div class="text-center p-3 text-sm font-medium border border-gray-200 rounded-xl peer-checked:bg-blue-50 peer-checked:border-corporate-brand peer-checked:text-corporate-brand hover:bg-gray-50 transition-all">
+                                        &gt; 500 Tamu
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit" class="w-full text-white bg-corporate-900 hover:bg-corporate-brand focus:ring-4 focus:ring-blue-300 font-bold rounded-xl text-lg px-5 py-4 transition-all duration-300 shadow-lg hover:shadow-blue-200 flex items-center justify-center gap-2">
+                                Kirim Permintaan Jadwal
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                            <p class="text-center text-xs text-gray-500 mt-4 font-medium">Tim kami akan membalas maksimal dalam waktu 1x24 jam kerja.</p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER RAKSASA -->
+    <!-- (Copy paste blok footer yang sama dari index.html agar seragam, gua singkat di sini biar rapi) -->
+    <footer class="bg-corporate-900 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 text-sm font-medium">© 2026 PT GateTech Solusi Indonesia. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur Sistem | GateTech Enterprise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="js/config.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load Alpine JS cuma di halaman yang butuh interaksi tab -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+    <!-- COPY NAVBAR DARI INDEX DI SINI, ubah class active ke menu "Solusi & Fitur" -->
+    <!-- (Gua skip biar kodenya gak kepanjangan, lu copy persis kayak di index.html aja bagian headernya) -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+                    <span class="font-extrabold text-2xl tracking-tight text-corporate-900">GateTech</span>
+                </a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-sm font-semibold text-gray-600 hover:text-corporate-brand transition">Beranda</a>
+                    <a href="fitur.html" class="text-sm font-bold text-corporate-brand">Solusi & Fitur</a>
+                    <a href="kontak.html" class="text-sm font-semibold text-gray-600 hover:text-corporate-brand transition">Hubungi Kami</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- HEADER HALAMAN FITUR -->
+    <div class="bg-corporate-900 text-white py-16 text-center">
+        <h1 class="text-4xl font-bold mb-4">Arsitektur & Solusi Sistem</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">Pelajari bagaimana GateTech mengotomatisasi alur operasional gedung Anda dengan teknologi terintegrasi.</p>
+    </div>
+
+    <!-- TABS SECTION (Ambil dari kode sebelumnya yang ada Alpine.js nya) -->
+    <section class="py-24 bg-white" x-data="{ tab: 'tamu' }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button @click="tab = 'tamu'" :class="tab === 'tamu' ? 'bg-corporate-brand text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-6 py-3 rounded-full font-semibold transition">Pengalaman Tamu (QR)</button>
+                <button @click="tab = 'parkir'" :class="tab === 'parkir' ? 'bg-corporate-brand text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'" class="px-6 py-3 rounded-full font-semibold transition">Integrasi Parkir VIP</button>
+            </div>
+
+            <!-- Konten Tab Tamu -->
+            <div x-show="tab === 'tamu'" class="p-8 border border-gray-200 rounded-2xl bg-corporate-light">
+                <h3 class="text-2xl font-bold text-corporate-900 mb-4">Sistem QR Code Terenkripsi</h3>
+                <p class="text-gray-600">Tamu akan menerima QR Code sekali pakai untuk melewati turnstile lobby, menggantikan proses manual penukaran KTP yang memakan waktu.</p>
+                <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800" class="mt-6 rounded-xl w-full md:w-1/2 object-cover h-64" alt="QR Access">
+            </div>
+
+            <!-- Konten Tab Parkir -->
+            <div x-show="tab === 'parkir'" class="p-8 border border-gray-200 rounded-2xl bg-corporate-light" style="display: none;">
+                <h3 class="text-2xl font-bold text-corporate-900 mb-4">Integrasi LPR & Boomgate</h3>
+                <p class="text-gray-600">Sinkronisasi database tamu dengan palang parkir. Kendaraan tamu VIP yang sudah terdaftar akan dikenali melalui License Plate Recognition (LPR) dan portal otomatis terbuka.</p>
+                <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&q=80&w=800" class="mt-6 rounded-xl w-full md:w-1/2 object-cover h-64" alt="Parking">
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

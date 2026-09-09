@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GateTech | Enterprise Visitor Management</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        heading: ['"Outfit"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'] 
+                    },
+                    colors: {
+                        corporate: {
+                            900: '#060A14', /* Lebih gelap, hampir hitam murni */
+                            800: '#0F172A', 
+                            700: '#1E293B',
+                            brand: '#2563EB', 
+                            accent: '#10B981', 
+                            surface: '#FAFAFA' /* Putih tulang minimalis */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; width: 200%; animation: marquee 30s linear infinite; }
+        
+        /* Background Textures Premium */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        }
+        .bg-dots {
+            background-image: radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .bg-dots-dark {
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-white">
+
+    <!-- NAVBAR (Semua Link Sudah Aktif) -->
+    <header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-corporate-900 rounded-md flex items-center justify-center transition-transform group-hover:scale-105">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-corporate-900">GateTech.</span>
+                </a>
+                
+                <!-- Menu tengah -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-sm font-semibold text-corporate-900 hover:text-corporate-900 transition-colors">Beranda</a>
+                    
+                    <!-- Dropdown Ekosistem (Area Hover Diperlebar biar gak gampang ilang) -->
+                    <div class="relative group py-4">
+                        <button class="text-sm font-medium text-gray-500 hover:text-corporate-900 flex items-center gap-1 focus:outline-none transition-colors">
+                            Ekosistem Fitur
+                            <svg class="w-4 h-4 text-gray-400 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <!-- Panel Dropdown -->
+                        <div class="absolute top-full left-0 w-64 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                            <a href="fitur-tamu.html" class="block px-5 py-4 hover:bg-gray-50 transition-colors border-b border-gray-50 group/item">
+                                <span class="text-sm font-bold text-corporate-900 group-hover/item:text-corporate-brand transition-colors">Manajemen Tamu</span>
+                                <span class="text-xs text-gray-500 font-light mt-1 block">Akses QR Code Dinamis</span>
+                            </a>
+                            <a href="fitur-parkir.html" class="block px-5 py-4 hover:bg-gray-50 transition-colors group/item">
+                                <span class="text-sm font-bold text-corporate-900 group-hover/item:text-corporate-accent transition-colors">Integrasi Parkir</span>
+                                <span class="text-xs text-gray-500 font-light mt-1 block">License Plate Recognition</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Link Tentang Kami (Flow Utama) -->
+                    <a href="tentang.html" class="text-sm font-semibold text-gray-500 hover:text-corporate-900 transition-colors">Tentang Kami</a>
+
+                    <!-- Tambahan Link Biar Gak Kosong -->
+                    <a href="kontak.html" class="text-sm font-medium text-gray-500 hover:text-corporate-900 transition-colors">Kontak Kami</a>
+                </nav>
+
+                <!-- Menu Kanan -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="login-dummy.html" class="text-sm font-medium text-gray-600 hover:text-corporate-900">Portal Tenant</a>
+                    <a href="jadwal-demo.html" class="bg-corporate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition-all shadow-md shadow-gray-200">Jadwalkan Demo</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Minimalist Glowing Background) -->
+    <section class="relative pt-32 pb-24 overflow-hidden bg-corporate-surface">
+        <!-- Dot Pattern Background -->
+        <div class="absolute inset-0 bg-dots pointer-events-none"></div>
+        <!-- Subtle Glows (Tanpa bentuk ikon mencolok) -->
+        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-400/10 blur-[120px] rounded-full pointer-events-none mix-blend-multiply"></div>
+        <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-emerald-400/10 blur-[100px] rounded-full pointer-events-none mix-blend-multiply"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white text-corporate-brand text-xs font-bold tracking-widest uppercase mb-8 border border-gray-200 shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-corporate-brand"></span>
+                Infrastruktur Properti Pintar
+            </div>
+            <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-corporate-900 tracking-tight leading-[1.1] mb-8">
+                Akses Terpadu. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-corporate-800 to-gray-400">Tanpa Antrean di Lobi.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
+                Digitalisasi manajemen pengunjung dan integrasi area parkir VIP dalam satu arsitektur perangkat lunak yang aman dan terukur.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#solusi" class="px-8 py-3.5 bg-corporate-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition shadow-lg">Eksplorasi Modul</a>
+                <a href="jadwal-demo.html" class="px-8 py-3.5 bg-white text-corporate-900 border border-gray-200 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm">Jadwalkan Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE (Sleek Text Only) -->
+    <div class="bg-white py-6 overflow-hidden border-y border-gray-100 relative z-20">
+        <div class="animate-marquee whitespace-nowrap flex items-center">
+            <div class="flex items-center space-x-12 px-6 text-[11px] font-bold text-gray-400 tracking-[0.2em] uppercase">
+                <span>99.9% Uptime SLA</span> <span class="text-gray-200">|</span>
+                <span>Enkripsi AES-256</span> <span class="text-gray-200">|</span>
+                <span>Open API Architecture</span> <span class="text-gray-200">|</span>
+                <span>License Plate Recognition</span> <span class="text-gray-200">|</span>
+                <span>Dynamic QR Code</span> <span class="text-gray-200">|</span>
+            </div>
+            <!-- Duplikat untuk Loop -->
+            <div class="flex items-center space-x-12 px-6 text-[11px] font-bold text-gray-400 tracking-[0.2em] uppercase">
+                <span>99.9% Uptime SLA</span> <span class="text-gray-200">|</span>
+                <span>Enkripsi AES-256</span> <span class="text-gray-200">|</span>
+                <span>Open API Architecture</span> <span class="text-gray-200">|</span>
+                <span>License Plate Recognition</span> <span class="text-gray-200">|</span>
+                <span>Dynamic QR Code</span> <span class="text-gray-200">|</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FITUR MODUL (Minimalist "No Big Icons" Design) -->
+    <section id="solusi" class="py-24 bg-corporate-900 text-white relative overflow-hidden">
+        <!-- Dark Mode Background Texture -->
+        <div class="absolute inset-0 bg-dots-dark pointer-events-none opacity-50"></div>
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/10 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+                <div class="max-w-2xl">
+                    <span class="text-corporate-brand font-bold tracking-widest uppercase text-xs mb-3 block">Modul Sistem</span>
+                    <h2 class="font-heading text-3xl md:text-5xl font-extrabold text-white">Ekosistem Terintegrasi</h2>
+                </div>
+                <p class="text-gray-400 text-sm md:text-base max-w-md leading-relaxed font-light">
+                    Pisahkan kompleksitas perangkat keras gedung. Sistem kami menghubungkan lobi, parkir, dan data tenant ke dalam satu arus data yang bersih.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Modul 1: Tamu (Minimalist Typographic Card) -->
+                <a href="fitur-tamu.html" class="block bg-corporate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-gray-500 hover:bg-corporate-800 transition-all duration-300 group">
+                    <!-- Aksen garis pengganti ikon -->
+                    <div class="w-8 h-1 bg-corporate-brand rounded-full mb-6 group-hover:w-16 transition-all duration-500"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-heading text-2xl font-bold text-white group-hover:text-corporate-brand transition-colors">Manajemen Tamu</h3>
+                        <span class="text-gray-500 group-hover:text-white transition-colors">↗</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+                        Mendigitalisasi proses check-in melalui undangan QR Code dinamis. Menghilangkan penumpukan antrean di resepsionis.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-gray-500">
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gray-500 rounded-full"></span> Pre-registrasi mandiri</li>
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gray-500 rounded-full"></span> Integrasi Turnstile (Flap Barrier)</li>
+                    </ul>
+                </a>
+
+                <!-- Modul 2: Parkir -->
+                <a href="fitur-parkir.html" class="block bg-corporate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-gray-500 hover:bg-corporate-800 transition-all duration-300 group">
+                    <div class="w-8 h-1 bg-corporate-accent rounded-full mb-6 group-hover:w-16 transition-all duration-500"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-heading text-2xl font-bold text-white group-hover:text-corporate-accent transition-colors">Integrasi Parkir</h3>
+                        <span class="text-gray-500 group-hover:text-white transition-colors">↗</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+                        Sinkronisasi data plat nomor tamu dengan kamera LPR di boomgate. Kendaraan VIP terdeteksi dan portal terbuka otomatis.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-gray-500">
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gray-500 rounded-full"></span> License Plate Recognition</li>
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gray-500 rounded-full"></span> Alokasi VIP Slot</li>
+                    </ul>
+                </a>
+
+                <!-- Modul 3: Security/Dashboard -->
+                <a href="login-dummy.html" class="block bg-corporate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-gray-500 hover:bg-corporate-800 transition-all duration-300 group">
+                    <div class="w-8 h-1 bg-gray-400 rounded-full mb-6 group-hover:w-16 transition-all duration-500"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-heading text-2xl font-bold text-white group-hover:text-gray-300 transition-colors">Admin Portal</h3>
+                        <span class="text-gray-500 group-hover:text-white transition-colors">↗</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+                        Pusat kontrol bagi manajemen gedung dan sekuriti untuk memantau log aktivitas tamu dan kendaraan secara real-time.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-gray-500">
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gray-500 rounded-full"></span> Real-time monitoring</li>
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gray-500 rounded-full"></span> Export rekap data</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORYTELLING (Masalah vs Solusi) dengan Grid Background -->
+    <section class="py-24 bg-white relative">
+        <div class="absolute inset-0 bg-grid opacity-40 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Kiri: Gambar dengan UI Box minimalis -->
+                <div class="relative">
+                    <div class="aspect-[4/5] bg-gray-100 rounded-2xl overflow-hidden relative border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Lobby" class="object-cover w-full h-full opacity-90">
+                    </div>
+                    <!-- Minimalist Floating Card (Pengganti Ikon Gede) -->
+                    <div class="absolute bottom-8 -right-8 bg-white/90 backdrop-blur-md p-6 rounded-xl border border-gray-100 shadow-xl max-w-[240px]">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Status Lobi</p>
+                        <p class="font-heading text-2xl font-extrabold text-corporate-900">0 Antrean</p>
+                        <div class="w-full h-1 bg-gray-100 mt-3 rounded-full overflow-hidden">
+                            <div class="h-full bg-corporate-accent w-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Teks Murni & Tipografi Mahal -->
+                <div>
+                    <h2 class="font-heading text-3xl md:text-4xl font-extrabold text-corporate-900 mb-6 leading-tight">
+                        Transformasi Lobi dari <br> <span class="text-gray-400 font-light">Bottleneck</span> Menjadi Seamless.
+                    </h2>
+                    <p class="text-gray-500 mb-8 leading-relaxed font-light text-lg">
+                        Proses manual penahanan KTP bukan hanya melanggar privasi, tetapi juga memperlambat laju mobilitas gedung Anda. GateTech memastikan identitas divalidasi jauh sebelum tamu menginjakkan kaki di properti Anda.
+                    </p>
+                    
+                    <div class="border-l-2 border-corporate-brand pl-6 space-y-6">
+                        <div>
+                            <h4 class="font-bold text-corporate-900 text-sm uppercase tracking-wider mb-1">Tanpa Kontak Fisik</h4>
+                            <p class="text-sm text-gray-500 font-light">Otorisasi dilakukan otomatis lewat pemindai optik.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-corporate-900 text-sm uppercase tracking-wider mb-1">Sinkronisasi Hardware</h4>
+                            <p class="text-sm text-gray-500 font-light">Terhubung langsung ke <em>relay</em> pintu akses lobi atau lift.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <a href="fitur-tamu.html" class="inline-flex items-center gap-2 text-sm font-bold text-corporate-brand hover:text-blue-800 transition-colors">
+                            Pelajari Alur Kerja <span class="text-lg">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-24 bg-corporate-surface border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading text-3xl md:text-5xl font-extrabold text-corporate-900 mb-6">Arsitektur Siap Pakai.</h2>
+            <p class="text-gray-500 text-lg mb-10 max-w-2xl mx-auto font-light">
+                Implementasikan standar baru untuk operasional properti komersial Anda. Tanpa instalasi server lokal yang rumit.
+            </p>
+            <a href="jadwal-demo.html" class="inline-block px-8 py-4 bg-corporate-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all shadow-xl hover:shadow-2xl">
+                Mulai Diskusi dengan Tim Kami
+            </a>
+        </div>
+    </section>
+
+    <!-- SHORT ABOUT US (Flow ke Halaman Tentang) -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-corporate-surface rounded-3xl p-10 md:p-16 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="md:w-2/3">
+                    <h2 class="font-heading text-3xl font-extrabold text-corporate-900 mb-4">Siapa di Balik GateTech?</h2>
+                    <p class="text-gray-500 leading-relaxed font-light mb-6 max-w-xl">
+                        Kami adalah kumpulan insinyur perangkat lunak yang berfokus membangun ekosistem keamanan gedung tanpa kompromi. Pelajari bagaimana standar privasi data dan rekayasa sistem kami bekerja.
+                    </p>
+                    <a href="tentang.html" class="inline-flex items-center gap-2 text-sm font-bold text-corporate-900 hover:text-corporate-brand transition-colors group">
+                        Kenali Perusahaan Kami 
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+                <div class="md:w-1/3 flex justify-center md:justify-end">
+                    <!-- Ornamen Logo/Shield -->
+                    <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100">
+                        <svg class="w-12 h-12 text-corporate-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MASTER FOOTER RAKSASA -->
+    <footer class="bg-corporate-900 pt-16 pb-8 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Kolom 1: Brand -->
+                <div class="col-span-1">
+                    <span class="font-heading font-extrabold text-xl text-white tracking-tight block mb-4">GateTech.</span>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">
+                        Infrastruktur properti pintar. Menghubungkan lobi, area parkir, dan data manajemen dalam satu arus yang aman.
+                    </p>
+                </div>
+                
+                <!-- Kolom 2: Ekosistem -->
+                <div>
+                    <h4 class="text-gray-100 font-bold mb-6 text-xs uppercase tracking-widest">Ekosistem</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm font-light">
+                        <li><a href="fitur-tamu.html" class="hover:text-white transition">Manajemen Tamu (QR)</a></li>
+                        <li><a href="fitur-parkir.html" class="hover:text-white transition">Integrasi Parkir (LPR)</a></li>
+                        <li><a href="login-dummy.html" class="hover:text-white transition">Portal Tenant</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Kolom 3: Perusahaan -->
+                <div>
+                    <h4 class="text-gray-100 font-bold mb-6 text-xs uppercase tracking-widest">Perusahaan</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm font-light">
+                        <li><a href="tentang.html" class="hover:text-white transition">Tentang Kami</a></li>
+                        <li><a href="kontak.html" class="hover:text-white transition">Kontak & Dukungan</a></li>
+                        <li><a href="jadwal-demo.html" class="hover:text-corporate-brand font-medium transition">Jadwalkan Demo</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Kolom 4: Alamat -->
+                <div>
+                    <h4 class="text-gray-100 font-bold mb-6 text-xs uppercase tracking-widest">Kantor Pusat</h4>
+                    <address class="not-italic text-gray-400 text-sm font-light space-y-2">
+                        <p>Menara GateTech Lt. 12</p>
+                        <p>Kawasan Bisnis Sudirman</p>
+                        <p>Jakarta Selatan, 12190</p>
+                        <p class="pt-4 font-medium"><a href="mailto:hello@gatetech.id" class="text-white hover:text-corporate-brand transition">hello@gatetech.id</a></p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+                <p>© 2026 PT GateTech Solusi Indonesia. Hak Cipta Dilindungi.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition cursor-not-allowed">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition cursor-not-allowed">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
